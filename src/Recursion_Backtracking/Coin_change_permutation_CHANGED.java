@@ -1,0 +1,28 @@
+package Recursion_Backtracking;
+import java.util.*;
+import java.io.*;
+public class Coin_change_permutation_CHANGED {
+    public static void coinChange(int[] coins, int amtsf, int tamt, String asf) {
+        if (amtsf > tamt) {
+            return;
+        } else if (amtsf == tamt) {
+            System.out.println(asf + ".");
+            return;
+        }
+
+        for (int j = 0; j < coins.length; j++) {
+            coinChange(coins, amtsf + coins[j], tamt, asf + coins[j] + "-");
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] coins = new int[n];
+        for (int i = 0; i < n; i++) {
+            coins[i] = Integer.parseInt(br.readLine());
+        }
+        int amt = Integer.parseInt(br.readLine());
+        coinChange(coins, 0, amt, "");
+    }
+}
